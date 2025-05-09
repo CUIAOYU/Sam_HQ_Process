@@ -76,7 +76,7 @@ We'll primarily use Anaconda Navigator to create and manage the environment, and
     pip install -e .
     cd ..
     ```
-    This will install it as a package named `segment_anything`. Please note the full path where you cloned the `sam-hq` repository (e.g., `C:\Users\YourUsername\sam-hq` or your chosen path), as you'll need it later.
+    This will install it as a package named `segment_anything`.
 
 **6. Download SAM_HQ Model Weights**
 
