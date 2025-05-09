@@ -76,7 +76,7 @@
     pip install -e .
     cd ..
     ```
-    这样操作后，它就会被安装成一个叫 `segment_anything` 的包。请记下你克隆 `sam-hq` 仓库的完整路径 (例如 `C:\Users\你的用户名\sam-hq` 或你选择的其他路径)，后面会用到。
+    这样操作后，它就会被安装成一个叫 `segment_anything` 的包。
 
 **6. 下载 SAM_HQ 模型权重文件**
 
