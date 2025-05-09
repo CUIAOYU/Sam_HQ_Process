@@ -9,7 +9,7 @@ If you're looking for a tool to batch process images, generate high-quality imag
 * **SAM_HQ Model Support**: You can load your downloaded SAM_HQ pre-trained models (`.pth` files) to automatically generate ultra-high-quality image masks.
 * **Adjustable Mask Generation Parameters**: You can tweak various parameters of the SAM_HQ automatic mask generator, such as `points_per_side`, `pred_iou_thresh`, `stability_score_thresh`, etc., according to your needs.
 * **Two-Stage Mask Filtering**:
-    * **Stage One: Region Property Filters**: Performs initial filtering based on the pixel area (Area) of each mask region, its total brightness/aggregation value (Intensity), and the ratio of these two (Ratio = Intensity/Area). These filters can be enabled/disabled индивидуально, and their thresholds can be customized.
+    * **Stage One: Region Property Filters**: Performs initial filtering based on the pixel area (Area) of each mask region, its total brightness/aggregation value (Intensity), and the ratio of these two (Ratio = Intensity/Area). These filters can be enabled/disabled individually, and their thresholds can be customized.
     * **Stage Two: Pixel Aggregate Filters**: For masks that pass the first stage, the tool further examines each pixel within the region based on its aggregation value (calculated as `100 - (grayscale_value / 255.0) * 100.0`), retaining only pixels within a specified range.
 * **Results Visualization**: The contours of the filtered masks, along with their area, total aggregation value, and ratio, are drawn on the original image, and the processed image is saved.
 * **Organized Output Files**:
