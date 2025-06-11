@@ -157,10 +157,8 @@
 #### **Operations (操作按钮区)**
 
 * **Start Processing All Images (开始处理所有图片)**: 输入和模型都选好后，点此开始批量处理。
-* **Stop Processing (停止处理)**: 处理过程中随时可以安全地停止任务。
 * **Open Output Folder (打开输出文件夹)**: 直接打开保存结果的文件夹。
 * **Export All Values (导出全部数值)**: 处理完成后，将所有通过筛选的掩码数据导出为 `.txt` 文件。
-* **View Last Output (查看最后输出)**: 使用系统默认程序打开最后一张处理好的图片。
 
 #### **System Monitor & Processing Log (系统监控与处理日志)**
 
