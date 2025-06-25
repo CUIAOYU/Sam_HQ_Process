@@ -127,9 +127,6 @@ This tab is for automated mask generation and filtering for an entire folder of 
 * **Min Area (A) Threshold**: The minimum number of pixels a region must have to be considered. Default: `0`.
 * **Min Intensity (I) Threshold**: The sum of aggregation values for all pixels in a region must not be below this value. Default: `0.0`.
 * **Min Ratio (R=I/A) Threshold**: The ratio of total intensity (Intensity) to area (Area) must not be below this value. Default: `0.0`.
-* **Enable Phase 1 Filters**:
-    * **Area (A)**: Check this to enable filtering by area.
-    * **Intensity/Ratio (I/R)**: Check this to enable filtering by total intensity and ratio.
 
 #### **Phase 2: Pixel Aggregate Filters**
 
