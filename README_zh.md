@@ -128,9 +128,6 @@
 * **Min Area (A) Threshold (最小面积阈值)**: 一个区域至少要有多少像素才算数。默认：`0`。
 * **Min Intensity (I) Threshold (最小总聚合值阈值)**: 一个区域里所有像素的聚合值加起来的总和，不能低于这个数。默认：`0.0`。
 * **Min Ratio (R=I/A) Threshold (最小比率阈值)**: 总聚合值 (Intensity) 除以面积 (Area) 得到的比率，不能低于这个数。默认：`0.0`。
-* **Enable Phase 1 Filters (启用第一步筛选)**:
-    * **Area (A)**: 勾上才用面积筛选。
-    * **Intensity/Ratio (I/R)**: 勾上才用总聚合值和比率筛选。
 
 #### **Phase 2: Pixel Aggregate Filters (第二步筛选：看像素聚合值)**
 
