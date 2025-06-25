@@ -734,10 +734,7 @@ class HQSAMMainWindow(QMainWindow):
         param_layout_phase1.addRow("Min Intensity (I) Threshold:", self.i_threshold_spin)
         self.r_threshold_spin = QDoubleSpinBox(); self.r_threshold_spin.setRange(0.0, 100.0); self.r_threshold_spin.setSingleStep(0.01); self.r_threshold_spin.setValue(0.00); self.r_threshold_spin.setDecimals(2)
         param_layout_phase1.addRow("Min Ratio (R=I/A) Threshold:", self.r_threshold_spin)
-        metrics_layout = QHBoxLayout(); metrics_layout.setSpacing(15)
-        self.area_check = QCheckBox("Area (A)"); self.area_check.setStyleSheet("font-weight: normal;"); self.area_check.setChecked(True); metrics_layout.addWidget(self.area_check)
-        self.intensity_check = QCheckBox("Intensity/Ratio (I/R)"); self.intensity_check.setStyleSheet("font-weight: normal;"); self.intensity_check.setChecked(True); metrics_layout.addWidget(self.intensity_check)
-        metrics_layout.addStretch(); param_layout_phase1.addRow("Enable Phase 1 Filters:", metrics_layout); control_scroll_layout.addWidget(param_group_phase1)
+        control_scroll_layout.addWidget(param_group_phase1)
 
         param_group_phase2 = QGroupBox("Phase 2: Pixel Aggregate Filters"); param_group_phase2.setStyleSheet("QGroupBox { font-weight: bold; }")
         param_layout_phase2 = QFormLayout(param_group_phase2); param_layout_phase2.setContentsMargins(10, 15, 10, 10); param_layout_phase2.setVerticalSpacing(10); param_layout_phase2.setLabelAlignment(Qt.AlignmentFlag.AlignRight)
@@ -947,10 +944,9 @@ class HQSAMMainWindow(QMainWindow):
         input_folder_name = os.path.basename(os.path.normpath(self.input_folder))
         parent_dir = os.path.dirname(os.path.normpath(self.input_folder))
         param_parts = []
-        if self.area_check.isChecked(): param_parts.append(f"A={self.a_threshold_spin.value()}")
-        if self.intensity_check.isChecked():
-            param_parts.append(f"I={self.i_threshold_spin.value():.2f}") 
-            param_parts.append(f"R={self.r_threshold_spin.value():.2f}") 
+        param_parts.append(f"A={self.a_threshold_spin.value()}")
+        param_parts.append(f"I={self.i_threshold_spin.value():.2f}") 
+        param_parts.append(f"R={self.r_threshold_spin.value():.2f}") 
         param_parts.append(f"Agg={self.min_aggregate_spin.value()}-{self.max_aggregate_spin.value()}")
         param_str = "_".join(param_parts)
         output_folder_name = f"{input_folder_name}_SAM_HQ_Output_[{param_str}]"
@@ -981,8 +977,6 @@ class HQSAMMainWindow(QMainWindow):
 
     def set_all_parameters(self, params_dict):
         filter_params = params_dict.get("filters", {})
-        self.area_check.setChecked(filter_params.get("use_area", True))
-        self.intensity_check.setChecked(filter_params.get("use_intensity", True))
         self.a_threshold_spin.setValue(filter_params.get("a_threshold", 0))
         self.i_threshold_spin.setValue(filter_params.get("i_threshold", 0.00))
         self.r_threshold_spin.setValue(filter_params.get("r_threshold", 0.00))
@@ -1051,8 +1045,8 @@ class HQSAMMainWindow(QMainWindow):
 
     def get_filter_params(self):
         return {
-            "use_area": self.area_check.isChecked(),
-            "use_intensity": self.intensity_check.isChecked(),
+            "use_area": True,
+            "use_intensity": True,
             "a_threshold": self.a_threshold_spin.value(),
             "i_threshold": self.i_threshold_spin.value(),
             "r_threshold": self.r_threshold_spin.value(),
@@ -1185,7 +1179,6 @@ class HQSAMMainWindow(QMainWindow):
     def start_processing(self):
         min_agg = self.min_aggregate_spin.value(); max_agg = self.max_aggregate_spin.value()
         if min_agg > max_agg: QMessageBox.warning(self, "Invalid Thresholds", "Min Aggregate Threshold cannot be greater than Max Aggregate Threshold."); return
-        if not self.area_check.isChecked() and not self.intensity_check.isChecked(): QMessageBox.warning(self, "Selection Required", "Please select at least one Phase 1 filter method (Area or Intensity/Ratio)."); return
         if not self.input_folder or not self.model_path: QMessageBox.warning(self, "Input Missing", "Please select both an input folder and a SAM model file."); return
         if not SEGMENT_ANYTHING_AVAILABLE: QMessageBox.critical(self, "Library Missing", "'segment_anything' library is unavailable. Please install it."); return
         
